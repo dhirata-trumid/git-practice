@@ -6,7 +6,7 @@ We will be running through the following scenarios:
 1. Making a pull request
 2. Dealing with merge conflicts
 3. Moving changes to separate branches (and why we should use fresh branches)
-4. TBD (precommit hooks, )
+4. TBD (precommit hooks, what's the point of pr reviews?, etc)
 
 # Prework
 Please do the following:
@@ -37,3 +37,13 @@ Please do the following:
     - Create the pull request
 7. Edit the pull request description
 8. If you need to add changes to the pull request, just make changes to your local branch then push them to the remote branch (similar to step 4)
+
+# Scenario 2: Dealing with merge conflictss
+1. Ensure you have all remote branches: `git fetch`
+2. Checkout the following branch: `git checkout dhirata/merge-conflict-2`
+3. Update that branch to be in line with main branch: `git pull origin main`
+4. Uh oh. Check the pr to see flagged merge conflicts [here](https://github.com/dhirata-trumid/git-practice/pull/3)
+5. Resolve the conflicts in a text editor and commit the changes
+6. Create your own branch off of this one: `git checkout -b <your name>/fix-merge-conflict`
+7. Push your branch: `git push origin <your branch name>`
+8. Create a pr and see that there are no conflicts
