@@ -47,3 +47,19 @@ Please do the following:
 6. Create your own branch off of this one: `git checkout -b <your name>/fix-merge-conflict`
 7. Push your branch: `git push origin <your branch name>`
 8. Create a pr and see that there are no conflicts
+
+# Scenario 3: Moving changes to a separate branch
+1. Ensure you have all remote branches: `git fetch`
+2. Checkout the following branch: `git checkout dhirata/lingering-branch`
+3. Create a new file
+4. Commit the changes you made in step 3
+5. Oops this isn't a clean branch. We should've had this change off of main
+6. Undo our commit:
+    - `git log`
+    - Copy the commit hash of the commit **right before our last commit** to your clipboard
+    - `git reset --soft <commit hash>`
+    - `git status`
+7. Stash our now uncommitted changes: `git stash`
+8. Checkout main: `git checkout main`
+9. Create a new branch off of main: `git checkout -b <your name>/put-stashed-changes`
+10. Unstash changes: `git stash pop`
