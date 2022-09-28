@@ -1,0 +1,1 @@
+# Basics of committing: understanding the git index
