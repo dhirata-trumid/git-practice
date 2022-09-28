@@ -38,14 +38,29 @@ git checkout <your_branch> # go back to your feature branch
 git rebase                 # run a rebase
 ```
 
+Try a typical rebase yourself!
+
+1. make sure you have the latest version of main / master `git checkout main && git checkout master`
+2. checkout a sample branch we've created for you `git checkout rebase_practice`
+3. Take a look at what the git log looks like before you rebase
+![before](images/git-log-after-simple-rebase.png)
+4. Now, rebase your branch onto the lates version of main: `git rebase main`. Your should see output that looks like this
+![output](images/git-rebase-simple-output.png)
+5. Finally, take a look at what the git log of your branch looks like now. You'll see all your latest development commits coming after the latest commit to main.
+![after](images/git-log-after-simple-rebase.png)
 
 ### Resolving conflicts
+
+Occassionaly, a change you've made in your branch will conflict with a change that already exists in master. When this happens git-rebase will alert you to the conflicts and you'll have the opportunity to manually resolve them. In this section, we'll walk you through that process.
+
 
 
 ### Interactive rebase
 
-
+Interactive rebase gives you a whole new power to rewrite your commit history and 
 
 
 ## Further Reading
-[Git Rebase Docs](https://git-scm.com/docs/git-rebase)
+
+* [Git Rebase Docs](https://git-scm.com/docs/git-rebase)
+* [Squashing Commits](https://www.git-tower.com/learn/git/faq/git-squash)
