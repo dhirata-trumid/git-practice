@@ -90,7 +90,7 @@ To do an interactive rebase,
 1. Get the branch that's been prepped for this, `git checkout interactive_rebase_practice`
 2. Run the rebase with the `-i` flag, `git rebase -i main`
 3. You'll see a text editor screen open, that looks like
-![]
+![interactive rebase editor](images/interactive-rebase-editor.png)
 4. Delete the lines corresponding to the commits you no longer want
 5. Save and quit. Your rebase will now continue as normal. If there are no conflicts, the rebase is not complete. If there are conflicts, you'll go through the normal conflict resolution flow.
 
