@@ -55,16 +55,31 @@ Occassionaly, a change you've made in your branch will conflict with a change th
 
 1. make sure you have the latest version of main / master `git checkout main && git checkout master`
 2. checkout a sample branch we've created for you `git checkout rebase_practice`
-3. Add this change to `world.py` and commit it. Take a look at your git log so far
+3. Add this change to the bottom of `world.py` and commit it. Take a look at your git log so far
+```python
+def spherical_to_cartesian(
+    r: float,
+    angle1: float,
+    angle2: float,
+) -> typing.Tuple[float, float, float]:
+    
+    x = r * math.sin(angle1) * math.cos(angle2)
+    y = r * math.sin(angle1) * math.sin(angle2)
+    z = r * math.cos(angle1)
+
+    return (x, y, z)
 ```
-```
+The current git log
+![log before rebase conflict](images/git-log-added-new-commit-rebase-conflict.png)
+
 4. Run `git rebase main`. Notice that git is now reporting conflicts 
-![]
-5. To resolve the conflicts go to the sections in your file labeled with `<<<<` and `>>>>` and choose which code you want to keep and which code you want to throw away. Then delete the git added annotations.
-![]
+![rebase conflicts](images/git-rebase-conflict.png)
+5. To resolve the conflicts go to the sections in your file labeled with `<<<<<<<` and `>>>>>>>`. Here, git is showing you two blocks of code. The first is the code as it exists in the current version of main (plus whatever commits you've already replayed on top of it). The second is the code that's coming in from your new commit. Choose which code you want to keep and which code you want to throw away. Then delete the git added annotations.
+![conflict resolution](images/git-rebase-conflict-resolution.png)
 6. `git add world.py` and `git rebase` continue. Output should look like
-![]
+![rebase continue](images/continue-rebase.png)
 7. Now to a look at your git log. Notices two things (a) your commit is at the top of master and (b) the commit has changed, since as part of the rebase process you modified what the commit was doing (step 5)
+![log after rebase with conflicts](images/git-log-after-rebase.png)
 
 ### Interactive rebase
 
