@@ -7,7 +7,7 @@
 ## Notes
 - Reset is useful for many things such as:
     - locally squashing commits as you can soft reset back to any commit you want and coalesce into a single commit.
-    - undoing a commit on your current branch and moving it over to another branch via checkout
+    - undoing a commit on your current branch
 
 ## Hands on exercise
 In this exercise we'll be resetting a commit.
