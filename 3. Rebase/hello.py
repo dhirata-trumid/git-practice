@@ -17,3 +17,7 @@ def third_function(c):
 
 def fourth_function(d):
     return math.sqrt(d)
+
+
+def fifth_function(e):
+    return e / 5
