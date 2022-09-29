@@ -83,7 +83,16 @@ The current git log
 
 ### Interactive rebase
 
-Interactive rebase gives you a whole new power to rewrite your commit history and 
+Interactive rebase gives you a whole new power to rewrite your commit history. There's many uses for it, but the use we'll go over today, is using interactive rebase to skip commits from your feature branch. A common reason you may want to do this is when the repo contains a version number. If the version number in master / main has been incremented, then you definitely don't want apply your changes 
+
+To do an interactive rebase, 
+
+1. Get the branch that's been prepped for this, `git checkout interactive_rebase_practice`
+2. Run the rebase with the `-i` flag, `git rebase -i main`
+3. You'll see a text editor screen open, that looks like
+![]
+4. Delete the lines corresponding to the commits you no longer want
+5. Save and quit. Your rebase will now continue as normal. If there are no conflicts, the rebase is not complete. If there are conflicts, you'll go through the normal conflict resolution flow.
 
 
 ## Further Reading
