@@ -53,7 +53,18 @@ Try a typical rebase yourself!
 
 Occassionaly, a change you've made in your branch will conflict with a change that already exists in master. When this happens git-rebase will alert you to the conflicts and you'll have the opportunity to manually resolve them. In this section, we'll walk you through that process.
 
-
+1. make sure you have the latest version of main / master `git checkout main && git checkout master`
+2. checkout a sample branch we've created for you `git checkout rebase_practice`
+3. Add this change to `world.py` and commit it. Take a look at your git log so far
+```
+```
+4. Run `git rebase main`. Notice that git is now reporting conflicts 
+![]
+5. To resolve the conflicts go to the sections in your file labeled with `<<<<` and `>>>>` and choose which code you want to keep and which code you want to throw away. Then delete the git added annotations.
+![]
+6. `git add world.py` and `git rebase` continue. Output should look like
+![]
+7. Now to a look at your git log. Notices two things (a) your commit is at the top of master and (b) the commit has changed, since as part of the rebase process you modified what the commit was doing (step 5)
 
 ### Interactive rebase
 
