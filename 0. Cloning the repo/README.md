@@ -16,4 +16,4 @@ $ git clone https://github.com/dhirata-trumid/git-practice.git
 $ pre-commit --version
 $ pre-commit install
 ```
-6. You're done!
+6. You're done! You now have a separate copy of the repo on your local machine (separate from the one on github).
