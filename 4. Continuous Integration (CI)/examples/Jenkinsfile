@@ -1,0 +1,102 @@
+import hudson.model.Result
+import hudson.model.Run
+import jenkins.model.CauseOfInterruption.UserInterruption
+
+def prepServer(){
+  withCredentials([usernameColonPassword(credentialsId: 'git-trumid', variable: 'GIT_CREDS'), usernamePassword(credentialsId: 'git-trumid', passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
+    dir('devops') {
+        git changelog: false, credentialsId: 'git-trumid', poll: false, url: 'https://github.com/Omnistac/devops.git'
+    }
+  }
+  withCredentials([string(credentialsId: 'VAULT_PASS', variable: 'VAULT_PASS')]) {
+    sh '''
+        echo $VAULT_PASS > ~/.ansible-vault.txt
+        pushd devops/ansible
+        echo "LABSCIBUILDS ansible_connection=local tm_env=build filebeat_index_prefix=developer" > environments/dev/local
+
+        ansible-playbook -i environments/dev/local docker.yml -l LABSCIBUILDS -e dataroot=/tmp/docker -e restart=yes
+        echo 'DOCKER_STORAGE_OPTIONS="--storage-driver devicemapper"' | sudo tee -a /etc/sysconfig/docker-storage
+        sudo service docker restart
+        ansible-playbook -i environments/dev/local install-beats.yml
+        popd
+    '''
+  }
+  dir('devops') {
+    deleteDir()
+  }
+}
+
+
+
+pipeline {
+
+    agent {
+        label 'docker-build'
+    }
+
+    environment {
+        JFROG_DOCKER_CREDS = credentials('docker_jfrog_creds')
+        VAULT_TOKEN = credentials('labs-vault-token')
+        SLACKER = "#labs-ops-dev"
+        APP_NAME = "favemap"
+        ENV = "dev-od"
+        WORKSPACE = pwd()
+    }
+
+    stages {
+        stage('Notify') {
+            steps {
+                script {
+                    echo "slacker: ${SLACKER}"
+                }
+            }
+        }
+
+        stage('Build and Test') {
+            steps {
+               prepServer()
+               checkout([ changelog: false, poll: false, scm: [
+                   $class: 'GitSCM',
+                   branches: [[name: '*/master']],
+                   doGenerateSubmoduleConfigurations: false,
+                   extensions: [
+                                [$class: 'RelativeTargetDirectory', relativeTargetDir: 'configs'],
+                                [$class: 'SparseCheckoutPaths', sparseCheckoutPaths:
+                                    [[path: 'labs/dev-od/favemap/**/*']]
+                                ]
+                               ],
+                   submoduleCfg: [],
+                   userRemoteConfigs: [[credentialsId: 'git-trumid', url: 'https://github.com/Omnistac/configs.git']]]
+               ])
+               sh 'make build test-ci'
+               sh 'make build_support'
+            }
+
+            post {
+                always {
+                    sh 'rm -f vault_pass.txt'
+                    sh 'make clean'
+                    junit 'test_results/*.xml'
+                }
+            }
+        }
+    }
+
+    post {
+
+        success {
+            slackSend channel: "$SLACKER",
+            color: "#2ECC71",
+            tokenCredentialId: 'slack_token',
+            message: "Favemap build PASSED in ${currentBuild.durationString.replace(" and counting", "")}: <${env.BUILD_URL}|${env.GIT_BRANCH}:${env.BUILD_NUMBER}>"
+        }
+
+        failure {
+            slackSend channel: "$SLACKER",
+            color: "#C70039",
+            tokenCredentialId: 'slack_token',
+            message: "Favemap build FAILED in ${currentBuild.durationString.replace(" and counting", "")}: <${env.BUILD_URL}|${env.GIT_BRANCH}:${env.BUILD_NUMBER}>"
+        }
+
+    }
+}
