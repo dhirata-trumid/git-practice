@@ -14,6 +14,7 @@ $ git checkout main
 $ git pull origin main
 $ git checkout -b <your name>/part-2-feature
 ```
+![output](images/screen1.png)
 4. In terminal navigate to the 1. Basics of committing directory:
 ```shell
 $ cd 2.\ Building\ a\ new\ feature/
@@ -34,4 +35,5 @@ $ git commit -m "not helping wilbur"
 ```shell
 $ git push origin <your branch name here>
 ```
+![output](images/screen2.png)
 9. Go to github and make a pr (don't forget to fill out the template when applicable)
