@@ -27,6 +27,7 @@ $ cd 1.\ Basics\ of\ committing/
 $ touch some_pig.py
 ```
 5. Check `git status` to see your unstaged changes.
+![output](images/screen1.png)
 6. Add the file to staging:
 ```shell
 $ git add some_pig.py
