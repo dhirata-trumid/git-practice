@@ -12,7 +12,7 @@ In this lesson we'll talk about
 Continuous integration can mean a lot different things to different people. At Trumid, it refers to the process which automatically:
 * runs tests
 * builds our code
-* deploys ourc ode 
+* deploys our code 
 
 For the purporses of this git focused lesson, we'll be more focused on the portion of CI that runs our tests, since that's really where git and CI intersect.
 
@@ -28,7 +28,7 @@ The typical process of what happens is:
 3. The Jenkins job looks for something called a `Jenkinsfile` to figure out what commands to actually run. The Jenkinsfile needs to be in the top level of your git repo 
 4. You can view currently running and past CI jobs at [Jenkins CI](ci.ad.trumid.com)
 5. For PRs, the job results are communicated back to github. The usual options are "passed", "failed", or "running"
-6. We can then configure the github repo to not allow merges to master unless the CI job has pssed.
+6. We can then configure the github repo to not allow merges to master unless the CI job has passed.
 
 ## How to figure out what commands CI is running
 
