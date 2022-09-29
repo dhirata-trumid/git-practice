@@ -33,8 +33,10 @@ $ touch some_pig.py
 $ git add some_pig.py
 ```
 7. In staging you can check `git status` again to see your change in staging.
+![output](images/screen2.png)
 8. Commit your change (make a good message!):
 ```shell
 $ git commit -m "tried to save wilbur"
 ```
+![output](images/screen3.png)
 9. Check the commit log and you should see head has moved to be your new commit while remote branch should still point at the previous commit
