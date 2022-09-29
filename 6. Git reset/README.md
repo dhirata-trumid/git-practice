@@ -26,3 +26,4 @@ In this exercise we'll be moving changes from one branch to another using reset 
 8. Checkout main so we create a fresh branch (see lesson 2): `git checkout main`
 9. Create a new branch off of main: `git checkout -b <your name>/put-stashed-changes`
 10. Unstash changes: `git stash pop`
+11. Commit your changes
