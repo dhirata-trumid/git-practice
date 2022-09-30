@@ -13,7 +13,7 @@ At Trumid we practice trunk based developement. This means we want to drop new c
 1. Producing clean diffs to master / main when you submit a PR on github
 2. The ability to resolve conflicts (and test those resolutions) before merging your branch with master
 
-If you were to visualized what's happening in a rebase, here's what it would look like. Before your rebrace, you may be a branch that looks like
+If you were to visualized what's happening in a rebase, here's what it would look like. Before your rebase, you may be a branch that looks like
 ```
           A---B---C branch
          /
@@ -62,7 +62,7 @@ def spherical_to_cartesian(
     angle1: float,
     angle2: float,
 ) -> typing.Tuple[float, float, float]:
-    
+
     x = r * math.sin(angle1) * math.cos(angle2)
     y = r * math.sin(angle1) * math.sin(angle2)
     z = r * math.cos(angle1)
@@ -72,7 +72,7 @@ def spherical_to_cartesian(
 The current git log
 ![log before rebase conflict](images/git-log-added-new-commit-rebase-conflict.png)
 
-4. Run `git rebase main`. Notice that git is now reporting conflicts 
+4. Run `git rebase main`. Notice that git is now reporting conflicts
 ![rebase conflicts](images/git-rebase-conflict.png)
 5. To resolve the conflicts go to the sections in your file labeled with `<<<<<<<` and `>>>>>>>`. Here, git is showing you two blocks of code. The first is the code as it exists in the current version of main (plus whatever commits you've already replayed on top of it). The second is the code that's coming in from your new commit. Choose which code you want to keep and which code you want to throw away. Then delete the git added annotations.
 ![conflict resolution](images/git-rebase-conflict-resolution.png)
@@ -83,9 +83,9 @@ The current git log
 
 ### Interactive rebase
 
-Interactive rebase gives you a whole new power to rewrite your commit history. There's many uses for it, but the use we'll go over today, is using interactive rebase to skip commits from your feature branch. A common reason you may want to do this is when the repo contains a version number. If the version number in master / main has been incremented, then you definitely don't want apply your changes 
+Interactive rebase gives you a whole new power to rewrite your commit history. There's many uses for it, but the use we'll go over today, is using interactive rebase to skip commits from your feature branch. A common reason you may want to do this is when the repo contains a version number. If the version number in master / main has been incremented, then you definitely don't want apply your changes
 
-To do an interactive rebase, 
+To do an interactive rebase,
 
 1. Get the branch that's been prepped for this, `git checkout interactive_rebase_practice`
 2. Run the rebase with the `-i` flag, `git rebase -i main`

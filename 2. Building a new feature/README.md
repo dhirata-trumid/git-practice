@@ -5,6 +5,8 @@ When building a new feature you should also start on a fresh branch of of the la
 - At Trumid, when we commit to master via pr, we strongly prefer to `squash and merge`. The `squash and merge` function coalesces all of the commits on the pr into a single, new commit and merges that into master. So if you continue working on a branch which has had a pr merged off of it, the git histories will not align: your local branch will have all the commits before the squash and merge while the master branch will only have a single commit. This may create issues and "ghost changes" in your next pr.
 - It's good to get in the habit of making sure you have the most up to date changes in your main/master branch. Creating feature branches off of updated master branches will make your life a ton easier as you'll have less merge conflicts and git issues in general.
 
+When working on a new feature, it's good to remember to commit early and commit often. You can think of building a feature like climbing a mountain and committing like putting down footholds; the more footholds the better. It's also worthwhile to make sure your commit messages are relatively descript in case you need to go back to them.
+
 ## Hands on activity
 1. Go to the root directory
 2. Checkout main branch
