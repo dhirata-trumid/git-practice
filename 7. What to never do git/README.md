@@ -1,4 +1,4 @@
-# What to never do in git
+# :bangbang: :x: What to never do in git :x: :bangbang:
 ## git push -f origin master/main
 Pushing with the `-f` flag indicates that you are doing a force push, which sounds about as cool as it can be destructive. Force pushing forces the changes/commits on your local branch to the remote branch. There are some cases where you might want this behavior but you never want to perform this action on master. Generally, main/master branches should be protected from people pushing directly but just in case they aren't, try not to run force pushes against those branches.
 
