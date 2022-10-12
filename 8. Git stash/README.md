@@ -36,7 +36,7 @@ In this exercise we'll be resetting a commit.
 5. Run `git stash`. ![should see something like this](images/screen1.png)
 6. Look at the stash. ![stash](images/screen2.png)
 7. Look at your working directory. `git status` it should be clean i.e. no file present anymore.
-8. Check the diff of the stash against working directory: `git stash show -p stash@{0}`
+8. Check the diff of the stash against working directory: `git stash show -p stash@{0}` ![diff](images/screen3.png)
 9. Run `git stash pop`
 10. Check the status again: `git status`. You should see your file back in the working directory.
 11. Try it with another file/change and this time name your stashed changes (see: `git stash save "some message"`).
