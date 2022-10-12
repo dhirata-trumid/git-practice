@@ -12,3 +12,4 @@ This repo is meant to be an example of using git for teammembers that might not 
 5. [Understanding the git tree](5.%20Understanding%20the%20git%20tree/README.md)
 6. [Git reset](6.%20Git%20reset/README.md)
 7. [What to never do git](7.%20What%20to%20never%20do%20git/README.md)
+8. [Git stash](8.%20Git%20stash/README.md)
